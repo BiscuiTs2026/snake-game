@@ -1,0 +1,247 @@
+:root {
+  --bg: #0b1220;
+  --bg-glow: #163024;
+  --panel: rgba(18, 28, 46, 0.82);
+  --line: rgba(148, 201, 168, 0.16);
+  --text: #e8f3ea;
+  --muted: #8aa394;
+  --accent: #4ade80;
+  --accent-dark: #16a34a;
+  --food: #fb7185;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --radius: 20px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, var(--bg-glow), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px calc(20px + var(--safe-bottom));
+}
+
+.app {
+  width: min(460px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header h1 {
+  margin: 4px 0 12px;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+
+.scores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.score-card,
+.board-wrap,
+.controls,
+.dpad {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.score-card {
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.score-card .label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.score-card .value {
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.board-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 10px;
+  overflow: hidden;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #0a1620;
+  touch-action: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 12, 20, 0.62);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.overlay-card {
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.overlay-title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.overlay-text,
+.overlay-score {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.overlay-score {
+  margin-top: 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #121c2c;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 11px 8px;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #4ade80, #22c55e);
+  color: #052e16;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.btn:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+.hint {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.dpad {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 64px);
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  user-select: none;
+}
+
+.dpad-btn[data-dir="up"] { grid-column: 2; grid-row: 1; }
+.dpad-btn[data-dir="left"] { grid-column: 1; grid-row: 2; }
+.dpad-center { grid-column: 2; grid-row: 2; }
+.dpad-btn[data-dir="right"] { grid-column: 3; grid-row: 2; }
+.dpad-btn[data-dir="down"] { grid-column: 2; grid-row: 3; }
+
+.dpad-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #152033;
+  color: var(--accent);
+  border-radius: 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dpad-center {
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+
+.dpad-btn:active {
+  background: #1d3a2a;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 720px) {
+  .dpad {
+    display: grid;
+  }
+
+  .hint {
+    display: none;
+  }
+}
+
+@media (max-height: 740px) {
+  .header h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .dpad {
+    grid-template-rows: repeat(3, 54px);
+  }
+}
