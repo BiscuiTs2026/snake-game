@@ -26,6 +26,13 @@
 
     <section class="board-wrap">
       <canvas id="game" width="400" height="400" aria-label="贪吃蛇游戏区域"></canvas>
+      <div class="tilt-hud hidden" id="tilt-hud">
+        <div class="bubble-level" id="bubble-level" aria-label="倾斜指示器">
+          <span class="level-cross" aria-hidden="true"></span>
+          <span class="bubble" id="bubble"></span>
+        </div>
+        <button type="button" class="btn calibrate" id="btn-calibrate">校准</button>
+      </div>
       <div class="overlay" id="overlay">
         <div class="overlay-card" id="overlay-card">
           <p class="overlay-title" id="overlay-title">贪吃蛇</p>
@@ -35,6 +42,11 @@
       </div>
     </section>
 
+    <div class="mode-switch" id="mode-switch" role="tablist" aria-label="游戏模式">
+      <button type="button" class="mode-btn active" id="mode-classic" data-mode="classic" aria-pressed="true">经典模式</button>
+      <button type="button" class="mode-btn" id="mode-gravity" data-mode="gravity" aria-pressed="false">重力模式</button>
+    </div>
+
     <div class="controls">
       <button type="button" class="btn primary" id="btn-start">开始</button>
       <button type="button" class="btn" id="btn-pause" disabled>暂停</button>
@@ -42,6 +54,7 @@
     </div>
 
     <p class="hint" id="hint">方向键或 WASD 移动，空格暂停</p>
+    <p class="fallback-hint hidden" id="fallback-hint">未检测到倾斜感应，可用方向键或屏幕方向键控制。果实会顺着你最近选择的方向滚动。</p>
 
     <nav class="dpad" aria-label="触屏方向键">
       <button type="button" class="dpad-btn" data-dir="up" aria-label="上">▲</button>

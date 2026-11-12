@@ -1,3 +1,4 @@
+/* existing + gravity mode styles */
 :root {
   --bg: #0b1220;
   --bg-glow: #163024;
@@ -46,7 +47,7 @@ body {
   width: min(460px, 100%);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .header h1 {
@@ -66,7 +67,8 @@ body {
 .score-card,
 .board-wrap,
 .controls,
-.dpad {
+.dpad,
+.mode-switch {
   background: var(--panel);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -106,6 +108,68 @@ body {
   border-radius: 12px;
   background: #0a1620;
   touch-action: none;
+}
+
+.tilt-hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tilt-hud.hidden {
+  display: none;
+}
+
+.bubble-level {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(10, 22, 32, 0.88);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.08) inset;
+}
+
+.level-cross,
+.level-cross::before {
+  position: absolute;
+  inset: 50% 18%;
+  height: 1px;
+  margin-top: -0.5px;
+  background: rgba(148, 201, 168, 0.28);
+  content: "";
+}
+
+.level-cross::before {
+  inset: 18% 50%;
+  width: 1px;
+  height: auto;
+  margin: 0 0 0 -0.5px;
+}
+
+.bubble {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #bbf7d0, #4ade80);
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.55);
+  will-change: transform;
+}
+
+.btn.calibrate {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  background: rgba(18, 28, 46, 0.9);
 }
 
 .overlay {
@@ -154,6 +218,37 @@ body {
   display: none !important;
 }
 
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+}
+
+.mode-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 12px;
+  padding: 8px 6px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: linear-gradient(180deg, #4ade80, #22c55e);
+  color: #052e16;
+  font-weight: 700;
+}
+
+.mode-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -186,15 +281,22 @@ body {
   font-weight: 700;
 }
 
-.btn:not(:disabled):active {
+.btn:not(:disabled):active,
+.mode-btn:not(:disabled):active {
   transform: scale(0.97);
 }
 
-.hint {
+.hint,
+.fallback-hint {
   margin: 0;
   text-align: center;
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.5;
+}
+
+.fallback-hint {
+  color: #fbbf24;
 }
 
 .dpad {
@@ -251,5 +353,9 @@ body {
 
   .dpad {
     grid-template-rows: repeat(3, 54px);
+  }
+
+  .app {
+    gap: 10px;
   }
 }
