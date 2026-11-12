@@ -1,0 +1,9 @@
+{
+  "appId": "com.biscuits2026.snake",
+  "appName": "贪吃蛇",
+  "webDir": "www",
+  "backgroundColor": "#0b1220",
+  "android": {
+    "backgroundColor": "#0b1220"
+  }
+}

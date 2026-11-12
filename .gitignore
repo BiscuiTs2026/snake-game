@@ -1,2 +1,8 @@
 .DS_Store
 *.log
+node_modules/
+dist/
+*.apk
+*.aab
+*.ap_
+*.idsig
