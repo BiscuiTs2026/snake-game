@@ -6,3 +6,6 @@ dist/
 *.aab
 *.ap_
 *.idsig
+
+# Local playtest screenshots
+test-shots/

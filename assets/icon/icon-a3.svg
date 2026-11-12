@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="512" height="512">
+
+  <defs>
+    <linearGradient id="headGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#bbf7d0"/>
+      <stop offset="42%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="40%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <radialGradient id="foodGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fb7185" stop-opacity="0.55"/>
+      <stop offset="50%" stop-color="#fb7185" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#fb7185" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="headGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.1" flood-color="#4ade80" flood-opacity="0.28"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0.55" dy="0.9" stdDeviation="0.6" flood-color="#02080c" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+  <rect width="108" height="108" fill="#0a1620"/>
+  <g stroke="#4ade80" stroke-opacity="0.08" stroke-width="0.4" fill="none"><line x1="12" y1="0" x2="12" y2="108" /><line x1="0" y1="12" x2="108" y2="12" /><line x1="24" y1="0" x2="24" y2="108" /><line x1="0" y1="24" x2="108" y2="24" /><line x1="36" y1="0" x2="36" y2="108" /><line x1="0" y1="36" x2="108" y2="36" /><line x1="48" y1="0" x2="48" y2="108" /><line x1="0" y1="48" x2="108" y2="48" /><line x1="60" y1="0" x2="60" y2="108" /><line x1="0" y1="60" x2="108" y2="60" /><line x1="72" y1="0" x2="72" y2="108" /><line x1="0" y1="72" x2="108" y2="72" /><line x1="84" y1="0" x2="84" y2="108" /><line x1="0" y1="84" x2="108" y2="84" /><line x1="96" y1="0" x2="96" y2="108" /><line x1="0" y1="96" x2="108" y2="96" /></g>
+  
+  <g>
+    <rect x="10.600" y="71.475" width="28.000" height="28.000" rx="7.840" ry="7.840" fill="url(#bodyGrad)" filter="url(#softShadow)"/>
+    <rect x="40.000" y="71.475" width="28.000" height="28.000" rx="7.840" ry="7.840" fill="url(#bodyGrad)" filter="url(#softShadow)"/>
+    <rect x="69.400" y="71.475" width="28.000" height="28.000" rx="7.840" ry="7.840" fill="url(#bodyGrad)" filter="url(#softShadow)"/>
+    <g filter="url(#headGlow)">
+      <rect x="68.300" y="39.875" width="30.200" height="30.200" rx="8.456" ry="8.456" fill="url(#headGrad)"/>
+    </g>
+    
+    <circle cx="78.870" cy="49.237" r="2.869" fill="#052e16"/>
+    <circle cx="87.930" cy="49.237" r="2.869" fill="#052e16"/>
+    
+    <circle cx="84.600" cy="23.525" r="25.800" fill="url(#foodGlow)"/>
+    <circle cx="84.600" cy="23.525" r="15.000" fill="#fb7185"/>
+    <ellipse cx="80.400" cy="19.025" rx="5.100" ry="3.300" fill="#ffffff" opacity="0.28"/>
+  </g>
+</svg>
